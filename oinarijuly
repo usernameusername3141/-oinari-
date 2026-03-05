@@ -1,72 +1,11 @@
+Gacha Game Single File
+· html
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>シンプルガチャゲーム</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #4e73df, #1cc88a);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        color: white;
-        text-align: center;
-    }
-
-    .container {
-        background: rgba(0,0,0,0.3);
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        width: 350px;
-    }
-
-    h1 {
-        margin-bottom: 20px;
-    }
-
-    .result {
-        font-size: 24px;
-        margin: 20px 0;
-        min-height: 40px;
-    }
-
-    .rarity {
-        font-weight: bold;
-        margin-top: 10px;
-    }
-
-    button {
-        background: gold;
-        border: none;
-        padding: 15px 30px;
-        font-size: 18px;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    button:hover {
-        background: orange;
-        transform: scale(1.05);
-    }
-
-    .history {
-        margin-top: 20px;
-        font-size: 14px;
-        max-height: 100px;
-        overflow-y: auto;
-        background: rgba(255,255,255,0.1);
-        padding: 10px;
-        border-radius: 10px;
     }
 </style>
 </head>
 <body>
+
 
 <div class="container">
     <h1>🎮 ガチャゲーム</h1>
@@ -75,6 +14,7 @@
     <button onclick="drawGacha()">ガチャを引く</button>
     <div class="history" id="history"></div>
 </div>
+
 
 <script>
     const characters = [
@@ -85,10 +25,12 @@
         { name: "神龍", rarity: "UR", rate: 1 }
     ];
 
+
     function drawGacha() {
         const rand = Math.random() * 100;
         let sum = 0;
         let selected;
+
 
         for (let char of characters) {
             sum += char.rate;
@@ -98,12 +40,15 @@
             }
         }
 
+
         const resultDiv = document.getElementById("result");
         const rarityDiv = document.getElementById("rarity");
         const historyDiv = document.getElementById("history");
 
+
         resultDiv.textContent = selected.name + " をゲット！";
         rarityDiv.textContent = "レア度: " + selected.rarity;
+
 
         if (selected.rarity === "SSR" || selected.rarity === "UR") {
             rarityDiv.style.color = "gold";
@@ -113,12 +58,13 @@
             rarityDiv.style.color = "white";
         }
 
+
         const historyItem = document.createElement("div");
         historyItem.textContent = selected.rarity + " - " + selected.name;
         historyDiv.prepend(historyItem);
     }
 </script>
 
+
 </body>
 </html>
-
